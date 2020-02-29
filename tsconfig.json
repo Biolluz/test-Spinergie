@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "pretty": true,
+        "outDir": "./build",
+        "resolveJsonModule": true,
+    },
+    "files": [
+        "index.ts"
+    ],
+    "exclude": ["node_modules"]
+}
