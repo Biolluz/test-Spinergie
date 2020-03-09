@@ -1,3 +1,6 @@
+Compilation: tsc --watch
+execution: node index.js
+
 # test-Spinergie
  
 ## Problem 1 - JSON handling - 1st Part
