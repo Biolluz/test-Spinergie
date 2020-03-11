@@ -1,5 +1,7 @@
 "page1.initialSettings.color": "green"
 "page1.available-filters.name-filter.sort": "asc"
-"page1.initialSettings.coordinates": [24,30]
-"page1.available-filters.name-filter": { "column": "lastName", "sort": "desc" }
-"page1.initialSettings.color": "pink"
+"page1.initialSettings.coordinates": [24,37]
+"page1.available-filters.name-filter": { "column": "firstName", "sort": "desc" }
+"page1.initialSettings.color": "orange"
+"page1.initialSettings.coordinates[1]": { "value": "Wow JSON injected!!" }
+"page2.testarray[1].test1": [24,"yes"]

@@ -21,6 +21,13 @@
             "column": "name",
             "sort": "desc"
           }
-      }
+      },
+      "testarray": [
+        {"test1": {
+          "test11": "yop",
+          "test12": "lu"
+        }},
+        {"test2": "hoho"}
+      ]
     }
   }

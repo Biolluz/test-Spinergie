@@ -21,12 +21,35 @@ function update(config, line) {
     var value = Object.values(change)[0];
     var paths = propertyPath.split('.');
     var property = paths[paths.length - 1];
+    var partialObjToChange = getPartialObjToChange(config, paths);
+    updatePartialObj(partialObjToChange, property, value);
+}
+function getPartialObjToChange(config, paths) {
     var partialObjToChange = config;
+    var regex = new RegExp('\[[0-9]+\]\$');
     for (var i = 0; i < paths.length - 1; i++) {
-        partialObjToChange = partialObjToChange[paths[i]];
+        if (partialObjToChange.hasOwnProperty(paths[i])) {
+            partialObjToChange = partialObjToChange[paths[i]];
+        }
+        else if (regex.test(paths[i])) {
+            var arrayToChange = partialObjToChange[paths[i].split('[')[0]];
+            var index = paths[i].slice(paths[i].indexOf('[') + 1, paths[i].indexOf(']'));
+            partialObjToChange = arrayToChange[Number(index) - 1];
+        }
     }
     ;
-    Object.defineProperty(partialObjToChange, property, { value: value });
+    return partialObjToChange;
+}
+function updatePartialObj(partialObjToChange, property, value) {
+    var regex = new RegExp('\[[0-9]+\]\$');
+    if (partialObjToChange.hasOwnProperty(property)) {
+        Object.defineProperty(partialObjToChange, property, { value: value });
+    }
+    else if (regex.test(property)) {
+        var arrayToChange = partialObjToChange[property.split('[')[0]];
+        var index = property.slice(property.indexOf('[') + 1, property.indexOf(']'));
+        arrayToChange[Number(index) - 1] = value;
+    }
 }
 function save(obj) {
     var datas = JSON.stringify(obj);
